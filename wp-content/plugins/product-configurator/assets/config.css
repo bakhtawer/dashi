@@ -1,0 +1,5 @@
+#pconf-configurator { margin: 20px 0; padding: 20px; border: 1px solid #ddd; }
+.pconf-field { margin-bottom: 15px; }
+.pconf-field label { font-weight: bold; display: block; }
+.pconf-field input, .pconf-field select { width: 100%; padding: 8px; }
+#pconf-price-display { font-size: 24px; font-weight: bold; color: #0073aa; margin-top: 20px; }
