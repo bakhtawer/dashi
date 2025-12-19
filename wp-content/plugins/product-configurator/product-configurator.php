@@ -30,7 +30,7 @@ class ProductConfigurator {
     
     public function enqueue_assets() {
         if (is_product()) {
-            wp_enqueue_script('pconf-js', plugin_dir_url(__FILE__) . 'assets/config.js', ['jquery'], '1.0', true);
+            wp_enqueue_script('pconf-js', plugin_dir_url(__FILE__) . 'assets/config.js', ['jquery'], '1.0', true); //code fixed
             wp_enqueue_style('pconf-css', plugin_dir_url(__FILE__) . 'assets/config.css', [], '1.0');
             wp_localize_script('pconf-js', 'pconf_ajax', ['url' => admin_url('admin-ajax.php')]);
         }
@@ -117,8 +117,8 @@ class ProductConfigurator {
     }
     
     public function ajax_calculate_price() {
-        $product_id = intval($_POST['product_id']);
-        $config = $_POST['config'] ?? [];
+        $product_id = intval($_POST['product_id']??0);//added required changed sentization
+        $config = wp_kses_post_deep($_POST['config']??[]);
         $base_price = floatval($_POST['base_price']);
         
         $price = $this->calculate_formula_price($product_id, $config, $base_price);
